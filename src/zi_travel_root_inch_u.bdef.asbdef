@@ -1,0 +1,56 @@
+unmanaged implementation in class zbp_i_travel_root_inch_u unique;
+strict ( 2 );
+
+define behavior for ZI_TRAVEL_ROOT_INCH_U alias _Travel
+implementation in class zbp_i_travel_root_inch_u unique
+late numbering
+lock master
+authorization master ( instance )
+etag master LastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) TravelId;
+  field ( mandatory ) AgencyId, BookingFee,  CustomerId;
+  association _Booking { create ( features : instance ); }
+
+  mapping for /dmo/travel control /dmo/s_travel_intx{
+     TravelID = travel_id;
+     AgencyID = agency_id;
+     BeginDate = begin_date;
+     CurrencyCode = currency_code;
+     CustomerId = customer_id;
+     Description = description;
+     BookingFee = booking_fee;
+     OverAllStatus = status;
+     TotalPrice = total_price;
+     LastChangedAt = lastchangedat;
+  }
+
+}
+
+define behavior for ZI_BOOKING_INCH_U alias _Booking
+implementation in class zbp_i_booking_inch unique
+late numbering
+lock dependent by _Travel
+authorization dependent by _Travel
+etag dependent by _Travel
+{
+  update;
+  delete;
+  field ( readonly ) BookingId, TravelId;
+  association _Travel;
+
+  mapping for /dmo/booking control /dmo/s_booking_intx {
+     BookingId = booking_id;
+     CarrierId = carrier_id;
+     ConnectionId = connection_id;
+     CustomerId = customer_id;
+     CurrencyCode = currency_code;
+     FlightDate = flight_date;
+     FlightPrice = flight_price;
+     TravelId   = travel_id;
+  }
+
+}

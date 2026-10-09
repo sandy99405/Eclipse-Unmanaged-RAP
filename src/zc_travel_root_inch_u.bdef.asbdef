@@ -1,0 +1,19 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_TRAVEL_ROOT_INCH_U alias _Travel
+{
+  use create;
+//  use update;
+//  use delete;
+//
+//  use association _Booking { create; }
+}
+
+//define behavior for ZC_BOOKING_INCH_U alias _Booking
+//{
+//  use update;
+//  use delete;
+//
+//  use association _Travel;
+//}

@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition for Unamanagd Travel'
+define service ZC_TRAVEL_SER_INCH_U {
+  expose ZC_TRAVEL_ROOT_INCH_U;
+  expose ZC_BOOKING_INCH_U;
+}
